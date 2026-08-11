@@ -1,0 +1,182 @@
+============================================================
+AUTOMATION EXERCISE TEST EXECUTION
+============================================================
+Browser : Chromium
+Mode    : Headed
+Tests   : 3 test scenarios
+Run     : 2026-07-27_14-39-35
+============================================================
+============================= test session starts =============================
+platform win32 -- Python 3.14.6, pytest-9.1.1, pluggy-1.6.0 -- C:\Users\samiksha gariya\PlaywrightPython\venv\Scripts\python.exe
+cachedir: .pytest_cache
+metadata: {'Python': '3.14.6', 'Platform': 'Windows-11-10.0.26200-SP0', 'Packages': {'pytest': '9.1.1', 'pluggy': '1.6.0'}, 'Plugins': {'base-url': '2.1.0', 'html': '4.2.0', 'metadata': '3.1.1', 'playwright': '0.8.0'}, 'JAVA_HOME': 'C:\\Users\\samiksha gariya\\AppData\\Local\\Programs\\Eclipse Adoptium\\jdk-17.0.6.10-hotspot\\', 'Base URL': ''}
+rootdir: C:\Users\samiksha gariya\PlaywrightPython
+configfile: pytest.ini
+plugins: base-url-2.1.0, html-4.2.0, metadata-3.1.1, playwright-0.8.0
+collecting ... collected 3 items
+
+tests/test_complete_e2e.py::test_complete_purchase_journey[chromium] FAILED [ 33%]
+tests/test_negative_scenarios.py::test_login_with_invalid_credentials[chromium] PASSED [ 66%]
+tests/test_negative_scenarios.py::test_search_for_nonexistent_product[chromium] PASSED [100%]
+
+================================== FAILURES ===================================
+__________________ test_complete_purchase_journey[chromium] ___________________
+
+page = <Page url='https://automationexercise.com/'>
+tmp_path = WindowsPath('C:/Users/samiksha gariya/AppData/Local/Temp/pytest-of-samiksha gariya/pytest-9/test_complete_purchase_journey0')
+
+    @pytest.mark.e2e
+    def test_complete_purchase_journey(
+        page: Page,
+        tmp_path: Path,
+    ):
+        """
+        Complete journey:
+    
+        Registration
+            \u2193
+        Product search
+            \u2193
+        Cart
+            \u2193
+        Checkout
+            \u2193
+        Payment
+            \u2193
+        Invoice download
+            \u2193
+        Account deletion
+        """
+    
+        email = create_unique_email()
+    
+        try:
+            # Step 1: Register a new user.
+            register_new_user(
+                page,
+                email,
+            )
+    
+            # Step 2: Search for Blue Top
+            # and verify its details.
+            search_and_open_product(page)
+    
+            # Step 3: Set quantity and add
+            # the product to the cart.
+            add_product_and_open_cart(page)
+    
+            # Step 4: Verify cart values.
+            verify_cart(page)
+    
+            # Step 5: Continue to checkout.
+>           proceed_to_checkout(page)
+
+tests\test_complete_e2e.py:71: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+page = <Page url='https://automationexercise.com/'>
+
+    def proceed_to_checkout(page: Page):
+        """Click the Proceed To Checkout button."""
+    
+        page.locator(
+            "a.check_out"
+        ).click()
+    
+        expect(
+            page.locator(
+                "h2.heading"
+            ).first
+>       ).to_be_visible(timeout=TIMEOUT)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: Locator expected to be visible
+E       Actual value: None
+E       Error: element(s) not found 
+E       Call log:
+E         - Expect "to_be_visible" with timeout 15000ms
+E         - waiting for locator("h2.heading").first
+E       
+E       Aria snapshot:
+E       - banner:
+E         - link "Website for automation practice":
+E           - /url: /
+E           - img "Website for automation practice"
+E         - list:
+E           - listitem:
+E             - link "\uf015 Home":
+E               - /url: /
+E           - listitem:
+E             - link "\ue8f8 Products":
+E               - /url: /products
+E           - listitem:
+E             - link "\uf07a Cart":
+E               - /url: /view_cart
+E           - listitem:
+E             - link "\uf023 Logout":
+E               - /url: /logout
+E           - listitem:
+E             - link "\uf014 Delete Account":
+E               - /url: /delete_account
+E           - listitem:
+E             - link "\uf03a Test Cases":
+E               - /url: /test_cases
+E           - listitem:
+E             - link "\uf03a API Testing":
+E               - /url: /api_list
+E           - listitem:
+E             - link "\uf16a Video Tutorials":
+E               - /url: https://www.youtube.com/c/AutomationExercise
+E           - listitem:
+E             - link "\uf0e0 Contact us":
+E               - /url: /contact_us
+E           - listitem: \uf007 Logged in as Samiksha
+E       - list:
+E         - listitem:
+E           - link "Home":
+E             - /url: /
+E         - listitem: Shopping Cart
+E       - text: Proceed To Checkout
+E       - table:
+E         - rowgroup:
+E           - row "Item Description Price Quantity Total":
+E             - cell "Item"
+E             - cell "Description"
+E             - cell "Price"
+E             - cell "Quantity"
+E             - cell "Total"
+E             - cell
+E         - rowgroup:
+E           - row "Product Image Blue Top Women > Tops Rs. 500 2 Rs. 1000 \uf00d":
+E             - cell "Product Image":
+E               - link "Product Image":
+E                 - /url: ""
+E                 - img "Product Image"
+E             - cell "Blue Top Women > Tops":
+E               - heading "Blue Top" [level=4]:
+E                 - link "Blue Top":
+E                   - /url: /product_details/1
+E               - paragraph: Women > Tops
+E             - cell "Rs. 500":
+E               - paragraph: Rs. 500
+E             - cell "2":
+E               - button "2"
+E             - cell "Rs. 1000":
+E               - paragraph: Rs. 1000
+E             - cell "\uf00d"
+E       - contentinfo:
+E         - heading "Subscription" [level=2]
+E         - textbox "Your email address"
+E         - button "\uf18e"
+E         - paragraph: Get the most recent updates from our site and be updated your self...
+E         - paragraph: Copyright � 2021 All rights reserved
+
+pages\cart_page.py:118: AssertionError
+- Generated html report: file:///C:/Users/samiksha%20gariya/PlaywrightPython/report.html -
+=========================== short test summary info ===========================
+FAILED tests/test_complete_e2e.py::test_complete_purchase_journey[chromium]
+=================== 1 failed, 2 passed in 82.09s (0:01:22) ====================
+
+============================================================
+RESULT: ONE OR MORE TESTS FAILED
+EVIDENCE: C:\Users\samiksha gariya\PlaywrightPython\evidence\run_2026-07-27_14-39-35
+============================================================

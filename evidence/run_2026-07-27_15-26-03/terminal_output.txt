@@ -1,0 +1,28 @@
+============================================================
+AUTOMATION EXERCISE TEST EXECUTION
+============================================================
+Browser : Chromium
+Mode    : Headed
+Tests   : 3 test scenarios
+Run     : 2026-07-27_15-26-03
+============================================================
+============================= test session starts =============================
+platform win32 -- Python 3.14.6, pytest-9.1.1, pluggy-1.6.0 -- C:\Users\samiksha gariya\PlaywrightPython\venv\Scripts\python.exe
+cachedir: .pytest_cache
+metadata: {'Python': '3.14.6', 'Platform': 'Windows-11-10.0.26200-SP0', 'Packages': {'pytest': '9.1.1', 'pluggy': '1.6.0'}, 'Plugins': {'base-url': '2.1.0', 'html': '4.2.0', 'metadata': '3.1.1', 'playwright': '0.8.0'}, 'JAVA_HOME': 'C:\\Users\\samiksha gariya\\AppData\\Local\\Programs\\Eclipse Adoptium\\jdk-17.0.6.10-hotspot\\', 'Base URL': ''}
+rootdir: C:\Users\samiksha gariya\PlaywrightPython
+configfile: pytest.ini
+plugins: base-url-2.1.0, html-4.2.0, metadata-3.1.1, playwright-0.8.0
+collecting ... collected 3 items
+
+tests/test_complete_e2e.py::test_complete_purchase_journey[chromium] PASSED [ 33%]
+tests/test_negative_scenarios.py::test_login_with_invalid_credentials[chromium] PASSED [ 66%]
+tests/test_negative_scenarios.py::test_search_for_nonexistent_product[chromium] PASSED [100%]
+
+- Generated html report: file:///C:/Users/samiksha%20gariya/PlaywrightPython/report.html -
+======================== 3 passed in 71.49s (0:01:11) =========================
+
+============================================================
+RESULT: ALL TESTS PASSED
+EVIDENCE: C:\Users\samiksha gariya\PlaywrightPython\evidence\run_2026-07-27_15-26-03
+============================================================
