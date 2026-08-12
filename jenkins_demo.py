@@ -35,7 +35,7 @@ def run_test():
         )
 
         print("Screenshot saved.")
-        print("Playwright automation automatically executed after GitHub update.")
+        print("Playwright automation automatically executed ")
 
         browser.close()
 
